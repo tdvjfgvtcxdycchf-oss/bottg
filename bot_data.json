@@ -1,0 +1,25 @@
+{
+  "daily_limits": {
+    "2025-09-15": {
+      "1406522496": 2
+    }
+  },
+  "user_info": {
+    "1406522496_1757941320.0": {
+      "user_id": 1406522496,
+      "first_name": "haru‘55",
+      "last_name": null,
+      "username": "lanal20",
+      "message_text": "охоту крепкую",
+      "timestamp": 1757941320.0
+    },
+    "1406522496_1757941426.0": {
+      "user_id": 1406522496,
+      "first_name": "haru‘55",
+      "last_name": null,
+      "username": "lanal20",
+      "message_text": "охоту крепкую",
+      "timestamp": 1757941426.0
+    }
+  }
+}
