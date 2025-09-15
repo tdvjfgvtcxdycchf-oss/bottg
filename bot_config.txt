@@ -1,0 +1,8 @@
+# Конфигурация бота
+# Скопируйте этот файл в .env и заполните своими данными
+
+# Токен вашего Telegram бота (получите у @BotFather)
+BOT_TOKEN=your_bot_token_here
+
+# ID группы для пересылки сообщений (необязательно, можно установить командой /setgroup)
+TARGET_GROUP_ID=your_group_id_here
