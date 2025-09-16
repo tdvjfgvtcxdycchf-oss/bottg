@@ -1,0 +1,90 @@
+{
+  "daily_limits": {
+    "2025-09-16": {
+      "1401378511": 9,
+      "1871334568": 1
+    }
+  },
+  "user_info": {
+    "1401378511_1758006176.0": {
+      "user_id": 1401378511,
+      "first_name": "/",
+      "last_name": null,
+      "username": "Jzldj",
+      "message_text": "sadfasdf",
+      "timestamp": 1758006176.0
+    },
+    "1401378511_1758006201.0": {
+      "user_id": 1401378511,
+      "first_name": "/",
+      "last_name": null,
+      "username": "Jzldj",
+      "message_text": null,
+      "timestamp": 1758006201.0
+    },
+    "1401378511_1758006210.0": {
+      "user_id": 1401378511,
+      "first_name": "/",
+      "last_name": null,
+      "username": "Jzldj",
+      "message_text": null,
+      "timestamp": 1758006210.0
+    },
+    "1401378511_1758006216.0": {
+      "user_id": 1401378511,
+      "first_name": "/",
+      "last_name": null,
+      "username": "Jzldj",
+      "message_text": "dsfsdfsdf",
+      "timestamp": 1758006216.0
+    },
+    "1401378511_1758006226.0": {
+      "user_id": 1401378511,
+      "first_name": "/",
+      "last_name": null,
+      "username": "Jzldj",
+      "message_text": null,
+      "timestamp": 1758006226.0
+    },
+    "1401378511_1758006274.0": {
+      "user_id": 1401378511,
+      "first_name": "/",
+      "last_name": null,
+      "username": "Jzldj",
+      "message_text": "sdfsd",
+      "timestamp": 1758006274.0
+    },
+    "1401378511_1758006511.0": {
+      "user_id": 1401378511,
+      "first_name": "/",
+      "last_name": null,
+      "username": "Jzldj",
+      "message_text": "test",
+      "timestamp": 1758006511.0
+    },
+    "1401378511_1758007161.0": {
+      "user_id": 1401378511,
+      "first_name": "/",
+      "last_name": null,
+      "username": "Jzldj",
+      "message_text": "пук",
+      "timestamp": 1758007161.0
+    },
+    "1401378511_1758008844.0": {
+      "user_id": 1401378511,
+      "first_name": "/",
+      "last_name": null,
+      "username": "Jzldj",
+      "message_text": null,
+      "timestamp": 1758008844.0
+    },
+    "1871334568_1758015576.0": {
+      "user_id": 1871334568,
+      "first_name": "Влад",
+      "last_name": null,
+      "username": "wawe143",
+      "message_text": "Дениса из 8Б 21 лицей\n(Захаркайте беса)",
+      "timestamp": 1758015576.0
+    }
+  }
+}
