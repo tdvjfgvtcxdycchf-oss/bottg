@@ -1,0 +1,26 @@
+{
+  "daily_limits": {
+    "2025-09-21": {
+      "6883578056": 1,
+      "1401378511": 1
+    }
+  },
+  "user_info": {
+    "6883578056_1758456669.0": {
+      "user_id": 6883578056,
+      "first_name": "Админ",
+      "last_name": null,
+      "username": "PabloAdmino",
+      "message_text": "А",
+      "timestamp": 1758456669.0
+    },
+    "1401378511_1758456672.0": {
+      "user_id": 1401378511,
+      "first_name": "/",
+      "last_name": null,
+      "username": "Jzldj",
+      "message_text": "вы аоывоа",
+      "timestamp": 1758456672.0
+    }
+  }
+}
