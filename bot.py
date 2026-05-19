@@ -31,8 +31,11 @@ class MessageForwarderBot:
     def __init__(self, token: str):
         self.token = token
         proxy_url = os.getenv('PROXY_URL')
+        bot_api_url = os.getenv('BOT_API_URL')
         builder = Application.builder().token(token)
-        if proxy_url:
+        if bot_api_url:
+            builder = builder.base_url(f'{bot_api_url}/bot')
+        elif proxy_url:
             builder = builder.request(HTTPXRequest(proxy=proxy_url))
         self.application = builder.build()
         self.setup_handlers()
