@@ -5,6 +5,7 @@ from datetime import date, datetime, timedelta
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes, CallbackQueryHandler
 from telegram.error import TelegramError
+from telegram.request import HTTPXRequest
 from dotenv import load_dotenv
 
 # Загрузка переменных окружения из файла
@@ -29,7 +30,11 @@ DATA_FILE = 'bot_data.json'
 class MessageForwarderBot:
     def __init__(self, token: str):
         self.token = token
-        self.application = Application.builder().token(token).build()
+        proxy_url = os.getenv('PROXY_URL')
+        builder = Application.builder().token(token)
+        if proxy_url:
+            builder = builder.request(HTTPXRequest(proxy=proxy_url))
+        self.application = builder.build()
         self.setup_handlers()
     
     def setup_handlers(self):
@@ -417,7 +422,7 @@ class MessageForwarderBot:
     def run(self):
         """Запуск бота"""
         logger.info("Starting bot...")
-        self.application.run_polling(allowed_updates=Update.ALL_TYPES)
+        self.application.run_polling(allowed_updates=Update.ALL_TYPES, timeout=30, poll_interval=0)
 
 def main():
     """Основная функция"""
