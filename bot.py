@@ -2,8 +2,8 @@ import logging
 import os
 import json
 from datetime import date, datetime, timedelta
-from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes, CallbackQueryHandler
+from telegram import Update
+from telegram.ext import Application, CommandHandler, MessageHandler, filters, ContextTypes
 from telegram.error import TelegramError
 from telegram.request import HTTPXRequest
 from dotenv import load_dotenv
@@ -61,8 +61,6 @@ class MessageForwarderBot:
             self.forward_media
         ))
         
-        # Обработчик callback кнопок
-        self.application.add_handler(CallbackQueryHandler(self.button_callback))
         
         
         
@@ -312,89 +310,19 @@ class MessageForwarderBot:
             return
         
         try:
-            # Получаем информацию о чате
-            chat = update.effective_chat
-            
-            # Увеличиваем счетчик сообщений пользователя
             self.increment_daily_count(user.id, context)
-            
-            # Формируем информацию об отправителе
-            sender_info = f"👤 От: {user.first_name}"
-            if user.last_name:
-                sender_info += f" {user.last_name}"
-            if user.username:
-                sender_info += f" (@{user.username})"
-            
-            
-            sender_info += f"\n🕐 Время: {update.message.date.strftime('%d.%m.%Y %H:%M:%S')}"
-            
-            # Пересылаем сообщение в группу
+
             if update.message.text:
-                # Сохраняем информацию о пользователе
-                user_data = {
-                    'user_id': user.id,
-                    'first_name': user.first_name,
-                    'last_name': user.last_name,
-                    'username': user.username,
-                    'message_text': update.message.text,
-                    'timestamp': update.message.date.timestamp()
-                }
-                
-                # Создаем кнопку "Узнать информацию"
-                keyboard = [[InlineKeyboardButton("🔍 Узнать информацию", callback_data=f"info_{user.id}_{update.message.date.timestamp()}")]]
-                reply_markup = InlineKeyboardMarkup(keyboard)
-                
-                # Отправляем текст сообщения с кнопкой
                 await context.bot.send_message(
                     chat_id=TARGET_GROUP_ID,
                     text=update.message.text,
-                    reply_markup=reply_markup
                 )
-                
-                # Сохраняем данные пользователя в файл
-                data = self.load_data()
-                if 'user_info' not in data:
-                    data['user_info'] = {}
-                key = f"{user.id}_{update.message.date.timestamp()}"
-                data['user_info'][key] = user_data
-                self.save_data(data)
-                logger.info(f"Saved user data with key: {key}")
-                logger.info(f"User data: {user_data}")
-            else:
-                # Медиафайл - отправляем как новое сообщение (анонимно)
-                if update.message.photo:
-                    # Сохраняем информацию о пользователе
-                    user_data = {
-                        'user_id': user.id,
-                        'first_name': user.first_name,
-                        'last_name': user.last_name,
-                        'username': user.username,
-                        'message_text': update.message.caption if update.message.caption else None,
-                        'timestamp': update.message.date.timestamp()
-                    }
-                    
-                    # Создаем кнопку "Узнать информацию"
-                    keyboard = [[InlineKeyboardButton("🔍 Узнать информацию", callback_data=f"info_{user.id}_{update.message.date.timestamp()}")]]
-                    reply_markup = InlineKeyboardMarkup(keyboard)
-                    
-                    # Отправляем фото с кнопкой и подписью (если есть)
-                    caption = update.message.caption if update.message.caption else None
-                    await context.bot.send_photo(
-                        chat_id=TARGET_GROUP_ID,
-                        photo=update.message.photo[-1].file_id,
-                        caption=caption,
-                        reply_markup=reply_markup
-                    )
-                    
-                    # Сохраняем данные пользователя в файл
-                    data = self.load_data()
-                    if 'user_info' not in data:
-                        data['user_info'] = {}
-                    key = f"{user.id}_{update.message.date.timestamp()}"
-                    data['user_info'][key] = user_data
-                    self.save_data(data)
-                    logger.info(f"Saved user data with key: {key}")
-                    logger.info(f"User data: {user_data}")
+            elif update.message.photo:
+                await context.bot.send_photo(
+                    chat_id=TARGET_GROUP_ID,
+                    photo=update.message.photo[-1].file_id,
+                    caption=update.message.caption,
+                )
                 
             
             # Подтверждение пользователю с информацией о лимите
